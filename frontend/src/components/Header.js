@@ -53,7 +53,7 @@ function Header() {
               <Nav.Link href='#action1'>Cart</Nav.Link>
               <Button variant='outline-success'>Log in</Button>
             </div>
-            <FontAwesomeIcon icon='fa-solid fa-cart-shopping' />
+            {/* <FontAwesomeIcon icon='fa-solid fa-cart-shopping' /> */}
           </Navbar.Collapse>
         </Container>
       </Navbar>

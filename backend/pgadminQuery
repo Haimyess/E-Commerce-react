@@ -1,0 +1,14 @@
+CREATE TABLE products (
+	product_id SERIAL PRIMARY KEY,
+	product_name VARCHAR(255),
+	product_type VARCHAR(255),
+	product_description TEXT ,
+	product_price INTEGER ,
+	
+);
+
+INSERT INTO products 
+VALUES 
+("Basmati Rice", "Grains", "Fluffy and light, this long grained rice is named after the tropical basmati blossom of South East Asia.", 10),
+("Oats","Organic Porridge Oats are both wholesome and healthy, and can be used in all kinds of nutritious recipes. Packed with goodness.", 9),
+("Coffee Beans", "Roasted medium to dark, this delicious organic coffee is a smooth, sweet espresso blend of Nicaraguan, Colombian and Sumatran beans", 14);
