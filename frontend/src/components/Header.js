@@ -2,6 +2,7 @@
 
 import React from "react";
 import "../components/Header.css";
+import { Link } from "react-router-dom";
 
 import {
   Navbar,
@@ -12,6 +13,7 @@ import {
   FormControl,
   Button,
 } from "react-bootstrap/";
+import Catalogue from "../pages/Catalogue";
 
 function Header() {
   return (
@@ -27,7 +29,7 @@ function Header() {
               className='my-2 my-lg-0'
               style={{ maxHeight: "100px" }}
               navbarScroll>
-              <Nav.Link href='#action1'>Cataloge</Nav.Link>
+              <Link to='/catalogue'> Cataloge</Link>
 
               <NavDropdown title='Location' id='navbarScrollingDropdown'>
                 <NavDropdown.Item href='#action3'>Netanya</NavDropdown.Item>

@@ -14,3 +14,17 @@ VALUES
 ('Coffee Beans', 'Grains', 'Roasted medium to dark, this delicious organic coffee is a smooth, sweet espresso blend of Nicaraguan, Colombian and Sumatran beans', 14);
 
 SELECT * FROM products;
+
+INSERT INTO products (product_name, product_type, product_description, product_price)
+VALUES 
+('');
+
+-- to uncomment we use command and dot
+
+coffee --> https://pixabay.com/images/id-171653/ 
+oats --> https://pixabay.com/images/id-1846085/
+grains --> https://pixabay.com/images/id-563796/ 
+
+
+ALTER TABLE products
+ADD COLUMN  product_image VARCHAR(255);

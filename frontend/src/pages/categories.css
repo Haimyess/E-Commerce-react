@@ -1,0 +1,45 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0%;
+}
+
+.category-img {
+  object-fit: contain;
+  height: 80%;
+  width: 80%;
+  /* max-width: 50%; */
+}
+
+.categories-wrapper {
+    display: flex;
+    padding: 5rem;
+    border: 2px solid red;
+    /* margin-left: 30%; */
+      
+
+}
+
+/* 
+.category-card {
+  
+    
+} */
+
+/* .main-wrapper {
+    display: flex;
+    border: 5px solid blue;
+} */
+
+.categories-filter {
+    border: 3px solid yellow;
+}
+
+
+/* ------------------------------------- */
+/* --------------CATALOGUE-------------- */
+/* ------------------------------------- */
+
+/* .catalogue-wrapper {
+   width: 90%;
+} */
