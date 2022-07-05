@@ -1,8 +1,12 @@
 /** @format */
 
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Header from "../components/Header";
+import BtnAddToCart from "../components/BtnAddToCart";
+
+// Importing styles
+import "./styles/Category.css";
 
 export const Category = () => {
   const [products, setProducts] = useState([]);
@@ -36,18 +40,22 @@ export const Category = () => {
       <Header />
 
       <h1>{params.type}</h1>
-
-      {products.map((product) => {
-        console.log(product);
-        return (
-          <div key={product.product_id} className='category-card'>
-            <img className='category-img' src={product.product_image} />
-            <h3>{product.product_type}</h3>
-            <p>{product.product_price}</p>
-            <p>{product.product_description}</p>
-          </div>
-        );
-      })}
+      <div className='category-wrapper'>
+        {products.map((product) => {
+          console.log(product);
+          return (
+            <div className='product-card' key={product.product_id}>
+              <Link to={`/${product.product_id}`}>
+                <img className='img-card' src={product.product_image} />
+                <h3 className='title-card'>{product.product_type}</h3>
+                <p>{product.product_price}$</p>
+                <p>{product.product_description}</p>
+              </Link>
+              <BtnAddToCart />
+            </div>
+          );
+        })}
+      </div>
     </>
   );
 };

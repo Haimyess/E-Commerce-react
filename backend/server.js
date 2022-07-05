@@ -14,7 +14,9 @@ dotenv.config();
 const cors = require("cors");
 app.use(cors());
 // Listenting to the port 5000 in localhost
-app.listen(5000);
+app.listen(process.env.PORT || 8080, () => {
+  console.log(`listen on port ${process.env.PORT || 8080}`);
+});
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());

@@ -3,7 +3,7 @@
 const {
   getAllProducts,
   getCategory,
-  // getProduct,
+  getProduct,
 } = require("../modules/products.js");
 
 //Get request to READ all of the pordcuts. Could be update, delete, etc (CRUD)
@@ -18,15 +18,15 @@ const _getAllProducts = (req, res) => {
 };
 
 // READ - GET one product
-// const _getProduct = (req, res) => {
-//   getProduct(req.params.id)
-//     .then((data) => {
-//       res.json(data);
-//     })
-//     .catch((err) => {
-//       res.json({ msg: err.message });
-//     });
-// };
+const _getProduct = (req, res) => {
+  getProduct(req.params.id)
+    .then((data) => {
+      res.json(data);
+    })
+    .catch((err) => {
+      res.json({ msg: err.message });
+    });
+};
 // READ - GET category
 const _getCategory = (req, res) => {
   // changed here
@@ -41,5 +41,5 @@ const _getCategory = (req, res) => {
 module.exports = {
   _getAllProducts,
   _getCategory,
-  // _getProduct,
+  _getProduct,
 };
