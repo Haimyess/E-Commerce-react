@@ -10,6 +10,7 @@ import Home from "./pages/Home";
 import Catalogue from "./pages/Catalogue";
 import { Category } from "./pages/Category";
 import Product from "./pages/Product";
+import NotFound from "./pages/NotFound";
 
 // import { categoriesArray } from "./categoriesArray";
 
@@ -24,6 +25,7 @@ function App() {
         <Route path='/catalogue' element={<Catalogue />} />
         <Route path='/:type' element={<Category />} />
         <Route path='/:id' element={<Product />} />
+        <Route path='*' element={<NotFound />} />
         {/* <Route path='/signup' element={<Catalogue />} /> */}
       </Routes>
     </div>
