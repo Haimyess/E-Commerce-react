@@ -13,6 +13,6 @@ router.get("/all", _getAllProducts);
 
 // To the categories
 router.get("/:type", _getCategory);
-router.get("/:id", _getProduct);
+router.get("/product/:id", _getProduct);
 
 module.exports = router;

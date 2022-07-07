@@ -9,11 +9,11 @@ import BtnAddToCart from "../components/BtnAddToCart";
 function Product() {
   const [product, setProduct] = useState([]);
 
-  const params = useParams();
+  const { id } = useParams();
 
   useEffect(() => {
     const getProduct = async () => {
-      const res = await fetch(`api/products/${params.id}`);
+      const res = await fetch(`api/products/${id}`);
       const data = await res.json();
 
       setProduct(data);
@@ -22,7 +22,7 @@ function Product() {
   }, []);
   return (
     <>
-      <h1>{params.id}</h1>
+      <h1>{id}</h1>
 
       {product.map((product) => {
         return (
