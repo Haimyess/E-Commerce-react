@@ -12,6 +12,7 @@ const getAllProducts = () => {
 const getCategory = (product_type) => {
   return database("products")
     .select(
+      "product_id",
       "product_name",
       "product_price",
       "product_image",
@@ -24,6 +25,7 @@ const getCategory = (product_type) => {
 const getProduct = (product_id) => {
   return database("products")
     .select(
+      "product_id",
       "product_name",
       "product_price",
       "product_image",

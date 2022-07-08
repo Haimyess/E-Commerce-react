@@ -4,6 +4,9 @@
     padding: 0%;
 }
 
+/* ---------------------------------
+------------CATEGORY-------------
+--------------------------------- */
 
 .category-wrapper {
     display: flex;
@@ -28,4 +31,19 @@
     text-align: center;
     margin: 0 auto;
 
+}
+
+/* ---------------------------------
+------------PRODUCT-------------
+--------------------------------- */
+
+.product-wrapper {
+    display: flex;
+     width: 90%;
+    margin: 0 auto;
+}
+
+.product-img{
+    object-fit: contain;
+    max-width: 50%;
 }
