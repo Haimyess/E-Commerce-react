@@ -15,19 +15,22 @@ import NotFound from "./pages/NotFound";
 // import { categoriesArray } from "./categoriesArray";
 
 import "./App.css";
+import { CartProvider } from "./contexts/CartContext";
 
 function App() {
   return (
     <div className='App'>
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/cart' element={<Cart />} />
-        <Route path='/catalogue' element={<Catalogue />} />
-        <Route path='/:type' element={<Category />} />
-        <Route path='/product/:id' element={<Product />} />
-        <Route path='*' element={<NotFound />} />
-        {/* <Route path='/signup' element={<Catalogue />} /> */}
-      </Routes>
+      <CartProvider>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/cart' element={<Cart />} />
+          <Route path='/catalogue' element={<Catalogue />} />
+          <Route path='/:type' element={<Category />} />
+          <Route path='/product/:id' element={<Product />} />
+          <Route path='*' element={<NotFound />} />
+          {/* <Route path='/signup' element={<Catalogue />} /> */}
+        </Routes>
+      </CartProvider>
     </div>
   );
 }

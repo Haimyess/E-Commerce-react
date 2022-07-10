@@ -52,7 +52,7 @@ function Header() {
               <Nav.Link className='' href='#action2'>
                 Saved
               </Nav.Link>
-              <Nav.Link href='#action1'>Cart</Nav.Link>
+              <Nav.Link href='/cart'>Cart</Nav.Link>
               <Button variant='outline-success'>Log in</Button>
             </div>
             {/* <FontAwesomeIcon icon='fa-solid fa-cart-shopping' /> */}

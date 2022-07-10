@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 
 import "./styles/Category.css";
 
@@ -8,9 +8,11 @@ import { useParams } from "react-router-dom";
 
 import BtnAddToCart from "../components/BtnAddToCart";
 import Header from "../components/Header";
+import { CartContext } from "../contexts/CartContext";
 
 function Product() {
   const [product, setProduct] = useState([]);
+  const [cart, setCart] = useContext(CartContext);
 
   const params = useParams();
 
