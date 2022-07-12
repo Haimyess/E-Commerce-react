@@ -6,15 +6,23 @@ import "./styles/Category.css";
 
 import { useParams } from "react-router-dom";
 
-import BtnAddToCart from "../components/BtnAddToCart";
+// import BtnAddToCart from "../components/BtnAddToCart";
 import Header from "../components/Header";
-import { CartContext } from "../contexts/CartContext";
+// import { CartContext } from "../contexts/CartContext";
+import BtnAddToCart from "../components/BtnAddToCart";
 
 function Product() {
   const [product, setProduct] = useState([]);
-  const [cart, setCart] = useContext(CartContext);
+  // const [cart, setCart] = useContext(CartContext);
 
   const params = useParams();
+
+  // const AddToCart = (singleProduct) => {
+  //   // const exist = cart.find((item) => item.product_id === product.product_id);
+  //   // console.log(singleProduct);
+  //   setCart([...cart, singleProduct]);
+  //   console.log(cart);
+  // };
 
   useEffect(() => {
     const getProduct = async () => {
@@ -36,8 +44,12 @@ function Product() {
             <div>
               <h2 className='product-title'>{singleProduct.product_name}</h2>
               <p>{singleProduct.product_price}</p>
-              <BtnAddToCart />
+              {/* <BtnAddToCart product={singleProduct} /> */}
               <p>{singleProduct.product_description}</p>
+              {/* <button onClick={() => AddToCart(singleProduct)}>
+                Add to Cart
+              </button> */}
+              <BtnAddToCart product={singleProduct} />
             </div>
           </div>
         );

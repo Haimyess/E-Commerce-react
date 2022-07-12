@@ -1,12 +1,23 @@
 /** @format */
 
-import React from "react";
-import { Link } from "react-router-dom";
+/** @format */
 
-function BtnAddToCart() {
+import React, { useContext } from "react";
+
+import { CartContext } from "../contexts/CartContext";
+
+function BtnAddToCart(props) {
+  const { product } = props;
+  const [cart, setCart] = useContext(CartContext);
+
+  function addToCart(product) {
+    setCart([...cart, product]);
+
+    // console.log(cart);
+  }
   return (
     <>
-      <Link to={""}> Add to cart</Link>
+      <button onClick={() => addToCart(product)}> Add to cart</button>
     </>
   );
 }
