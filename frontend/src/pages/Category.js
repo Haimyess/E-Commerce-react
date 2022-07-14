@@ -3,12 +3,12 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import Header from "../components/Header";
-import BtnAddToCart from "../components/BtnAddToCart";
+// import BtnAddToCart from "../components/BtnAddToCart";
 
 // Importing styles
 import "./styles/Category.css";
 
-export const Category = () => {
+export const Category = ({ onAdd }) => {
   const [products, setProducts] = useState([]);
 
   // const [image, setImage] = useState("");
@@ -51,9 +51,10 @@ export const Category = () => {
                 <img className='img-card' src={product.product_image} />
                 <h3 className='title-card'>{product.product_type}</h3>
               </Link>
-              <p>{product.product_price}$</p>
+              <p>{product.product_name}</p>
               <p>{product.product_description}</p>
-              <BtnAddToCart product={product} />
+              <p>${product.product_price}$</p>
+              <button onClick={() => onAdd(product)}>Add to Cart</button>
             </div>
           );
         })}

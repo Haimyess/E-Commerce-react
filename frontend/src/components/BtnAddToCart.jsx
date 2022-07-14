@@ -11,9 +11,33 @@ function BtnAddToCart(props) {
   const [cart, setCart] = useContext(CartContext);
 
   function addToCart(product) {
-    setCart([...cart, product]);
+    const exist = cart.find((item) => item.product_id === product.product_id);
 
-    // console.log(cart);
+    // if (exist) {
+    //   setCart(
+    //     cart.map(
+    //       (item) =>
+    //         item.product_id === product.product_id && {
+    //           ...exist,
+    //           quantity: exist.quantity + 1,
+    //         }
+    //     )
+    //   );
+    // } else {
+    //   setCart([...cart, { ...product, quantity: 1 }]);
+    // }
+    if (exist) {
+      setCart(
+        cart.map((item) =>
+          item.product_id === product.product_id
+            ? { ...exist, quantity: exist.quantity + 1 }
+            : item
+        )
+      );
+    } else {
+      setCart([...cart, { ...product, quantity: 1 }]);
+      console.log(cart);
+    }
   }
   return (
     <>
