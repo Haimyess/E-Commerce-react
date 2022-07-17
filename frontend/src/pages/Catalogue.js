@@ -11,8 +11,8 @@ import "./categories.css";
 function Catalogue() {
   return (
     <>
+      <Header />
       <div className='catalogue-wrapper'>
-        <Header />
         <Categories />
       </div>
 

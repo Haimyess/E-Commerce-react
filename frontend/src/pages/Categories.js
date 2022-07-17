@@ -60,7 +60,7 @@ function Categories() {
           return (
             <div key={category.product_id} className='category-card'>
               <Link to={`/${category.product_type}`}>
-                <h3>{category.product_type}</h3>
+                <h3>{category.product_category}</h3>
               </Link>
             </div>
           );

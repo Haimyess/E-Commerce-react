@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import Header from "../components/Header";
+import Filter from "./Filter";
 // import BtnAddToCart from "../components/BtnAddToCart";
 
 // Importing styles
@@ -39,8 +40,29 @@ export const Category = ({ onAdd }) => {
     <>
       <Header />
 
-      <h1>{params.type}</h1>
+      <h1 className='category-name'>{params.type}</h1>
       <div className='category-wrapper'>
+        <aside>
+          <h2>Brands</h2>
+          {products.map((brand) => {
+            return (
+              <div>
+                <input type='checkbox' />
+                <label>{brand.product_brand}</label>
+              </div>
+            );
+          })}
+
+          <h2>Type</h2>
+          {/* <label htmlFor={} ></label> */}
+          <select>
+            {products.map((type) => {
+              <option value={type.product_subcategories}>
+                {type.product_subcategories}
+              </option>;
+            })}
+          </select>
+        </aside>
         {products.map((product) => {
           {
             /* console.log(product); */

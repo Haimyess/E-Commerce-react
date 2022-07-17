@@ -14,9 +14,9 @@ VALUES
 ('Coffee Beans', 'Grains', 'Roasted medium to dark, this delicious organic coffee is a smooth, sweet espresso blend of Nicaraguan, Colombian and Sumatran beans', 14);
 
 
-INSERT INTO products (product_name, product_type, product_description, product_price, product_image)
+INSERT INTO products (product_name, product_brand, product_category, product_subcategories, product_type, product_description, product_price, product_image)
 VALUES 
-('Wheat Rice',  'Grains', 'Fluffy and light, this long grained rice is named after the tropical basmati blossom of South East Asia.', 10, 'https://cdn.pixabay.com/photo/2013/08/11/19/46/coffee-171653_1280.jpg')
+('Pearsian Rice',  'Osem','Grains', 'Persian', 'Rice','Fluffy and light, this long grained rice is named after the tropical basmati blossom of South East Asia.', 10, 'https://cdn.pixabay.com/photo/2013/08/11/19/46/coffee-171653_1280.jpg')
 
 
 SELECT * FROM products;
@@ -35,14 +35,15 @@ grains --> https://pixabay.com/images/id-563796/
 
 
 ALTER TABLE products
-ADD COLUMN  product_image VARCHAR(255);
+ADD COLUMN  product_subcategories VARCHAR(255);
 
 
 -- DELETING MULTIPLE ROWS/RECORDS
 DELETE  FROM products
 WHERE  product_id IN(35, 36);
 
-
+DELETE FROM products
+WHERE product_id = 38;
 -- ADD DATA TO A ROW WITH SPECIFIC ID. WE PUTTED AN URL INTO THE PRODUCT_IMAGE COLUMN ONE BY ONE, BY ID..
 
 UPDATE products
@@ -58,9 +59,27 @@ UPDATE products
 SET product_image = 'https://cdn.pixabay.com/photo/2017/12/16/17/46/fried-rice-3023040_1280.jpg'
 WHERE product_id = 1;
 
+
+
+-- UPDATE PRODUCT 
 UPDATE products
-SET product_type = 'Coffee'
-WHERE product_id = 3;
+SET product_type = 'Rice'
+WHERE product_id = 37;
+
+UPDATE products
+SET product_brand = 'Tilda'
+WHERE product_id = 37;
+
+UPDATE products
+SET product_subcategories = 'Wheat'
+WHERE product_id = 37;
 
 
 
+UPDATE products
+set product_subcategory
+
+ALTER TABLE products
+RENAME COLUMN product_type TO product_category;
+
+SELECT * FROM products;
