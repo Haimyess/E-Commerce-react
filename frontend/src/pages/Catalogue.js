@@ -2,8 +2,8 @@
 
 import react from "react";
 
-import MainProducts from "../components/catalogue/MainProducts";
-import Header from "../components/Header";
+// import MainProducts from "../components/catalogue/MainProducts";
+
 import Categories from "./Categories";
 
 import "./categories.css";
@@ -11,7 +11,6 @@ import "./categories.css";
 function Catalogue() {
   return (
     <>
-      <Header />
       <div className='catalogue-wrapper'>
         <Categories />
       </div>

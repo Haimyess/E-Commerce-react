@@ -9,18 +9,20 @@ const getAllProducts = () => {
 
 // Get the category
 
-const getCategory = (product_type) => {
+const getCategory = (product_category) => {
   return database("products")
     .select(
-      "product_id",
-      "product_name",
-      "product_price",
-      "product_image",
-      "product_brand",
-      "product_description",
-      "product_subcategories"
+      "*"
+      // "product_id",
+      // "product_name",
+      // "product_price",
+      // "product_image",
+      // "product_brand",
+      // "product_description",
+      // "product_category",
+      // "product_subcategories"
     )
-    .where({ product_type: product_type });
+    .where({ product_category: product_category });
 };
 
 // Getting a product

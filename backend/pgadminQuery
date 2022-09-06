@@ -16,7 +16,7 @@ VALUES
 
 INSERT INTO products (product_name, product_brand, product_category, product_subcategories, product_type, product_description, product_price, product_image)
 VALUES 
-('Pearsian Rice',  'Osem','Grains', 'Persian', 'Rice','Fluffy and light, this long grained rice is named after the tropical basmati blossom of South East Asia.', 10, 'https://cdn.pixabay.com/photo/2013/08/11/19/46/coffee-171653_1280.jpg')
+('Thai Rice',  'Osem','Grains', 'Persian', 'Rice','Fluffy and light, this long grained rice is named after the tropical basmati blossom of South East Asia.', 12, 'https://cdn.pixabay.com/photo/2013/08/11/19/46/coffee-171653_1280.jpg')
 
 
 SELECT * FROM products;

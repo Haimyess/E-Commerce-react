@@ -1,40 +1,34 @@
 /** @format */
 
 import React, { useContext, useEffect } from "react";
-import { Nav } from "react-bootstrap";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
+import { Link } from "react-router-dom";
+
+// import { Nav } from "react-bootstrap";
+// import Footer from "../components/Footer";
+// import Header from "../components/Header";
 
 import "./categories.css";
 
 import { CartContext } from "../contexts/CartContext";
 
-function Cart({ onAdd, onRemove }) {
+function Cart({ onAdd, onMinus }) {
   const [cart, setCart] = useContext(CartContext);
-  // const [total, setTotal] = useState([]);
 
-  // displayTotal = () => {
-  //   setTotal(total);
-  // };
+  const shipping = 20;
 
-  // total =
-  // setTotal(total)
+  const taxInterest = 0.17;
 
-  // const total = cart.map((quantity) => {
-  //   return [quantity.quantity * quantity.product_price];
-  // });
+  const subTotalPrice = cart.reduce(
+    (a, c) => a + c.product_price * c.quantity,
+    0
+  );
 
-  const totalPrice = cart.reduce((a, c) => a + c.product_price * c.quantity, 0);
-  // const value = useContext(CartContext);
+  const taxes = taxInterest * subTotalPrice;
 
-  console.log(cart);
-  // console.log(cart.length);
+  const totalPrice = subTotalPrice + shipping + subTotalPrice * taxInterest;
 
   return (
     <>
-      <Header />
-      <Nav />
-      {/* {value} */}
       <div className='cart-product-wrapper'>
         <section className='cart-products-container'>
           {cart.map((item) => {
@@ -42,12 +36,14 @@ function Cart({ onAdd, onRemove }) {
               <div className='cart-product' key={item.product_id}>
                 <div className='cart-product--img-name'>
                   <img className='cart-product--img' src={item.product_image} />
+
                   <p className='cart-product--title'>{item.product_name}</p>
                 </div>
+
                 <div className='cart-quantity--btns'>
                   <button
                     onClick={() => {
-                      onRemove(item);
+                      onMinus(item);
                     }}>
                     -
                   </button>
@@ -70,11 +66,23 @@ function Cart({ onAdd, onRemove }) {
             <h2>Order Summary</h2>
             {/* <p>{total}</p> */}
             <p>
-              <strong>Total:</strong> {totalPrice}
+              <strong>Subtotal: </strong>${subTotalPrice.toFixed(2)}
+            </p>
+            <p>
+              <strong>Shipping: </strong>${shipping}
+            </p>
+            <p>
+              <strong>Taxes: </strong>${taxes.toFixed(2)}
             </p>
 
+            <p>
+              <strong>Total: </strong>${totalPrice.toFixed(2)}
+            </p>
             <br />
-            <button>Checkout</button>
+
+            <button>
+              <Link to='/checkout'>Checkout</Link>
+            </button>
           </div>
         </aside>
       </div>
@@ -100,8 +108,6 @@ function Cart({ onAdd, onRemove }) {
       <div>
         <h1>Order Summary</h1>
       </div> */}
-
-      <Footer />
     </>
   );
 }

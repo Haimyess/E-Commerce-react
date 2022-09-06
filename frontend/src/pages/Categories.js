@@ -59,7 +59,7 @@ function Categories() {
         {categories.map((category) => {
           return (
             <div key={category.product_id} className='category-card'>
-              <Link to={`/${category.product_type}`}>
+              <Link to={`/${category.product_category}`}>
                 <h3>{category.product_category}</h3>
               </Link>
             </div>

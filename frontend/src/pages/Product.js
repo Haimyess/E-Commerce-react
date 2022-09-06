@@ -7,7 +7,7 @@ import "./styles/Category.css";
 import { useParams } from "react-router-dom";
 
 // import BtnAddToCart from "../components/BtnAddToCart";
-import Header from "../components/Header";
+
 // import { CartContext } from "../contexts/CartContext";
 // import BtnAddToCart from "../components/BtnAddToCart";
 
@@ -35,7 +35,6 @@ function Product({ onAdd }) {
   }, []);
   return (
     <div>
-      <Header />
       {product.map((singleProduct) => {
         return (
           <div className='product-wrapper' key={singleProduct.product_id}>

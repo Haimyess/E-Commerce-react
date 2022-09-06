@@ -1,6 +1,12 @@
 /** @format */
 
-import React from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
+
+import LoginModal from "../components/LogInModal";
+
+import { LoginModalContext } from "../contexts/LoginModalContext";
+
+import SearchBar from "./SearchBar";
 import "../components/Header.css";
 import { Link } from "react-router-dom";
 
@@ -8,19 +14,25 @@ import {
   Navbar,
   Container,
   Nav,
-  NavDropdown,
   Form,
   FormControl,
   Button,
 } from "react-bootstrap/";
-import Catalogue from "../pages/Catalogue";
+// import Catalogue from "../pages/Catalogue";
 
 function Header() {
+  ////////////////////////MODAL
+
   return (
     <>
       <Navbar bg='light' expand='lg'>
         <Container fluid>
-          <Navbar.Brand href='#'>Navbar scroll</Navbar.Brand>
+          <p>
+            <Link className='logo-home' to='/'>
+              {" "}
+              Logo{" "}
+            </Link>
+          </p>
           <Navbar.Toggle aria-controls='navbarScroll' />
           <Navbar.Collapse
             id='navbarScroll'
@@ -31,29 +43,25 @@ function Header() {
               navbarScroll>
               <Link to='/catalogue'> Cataloge</Link>
 
-              <NavDropdown title='Location' id='navbarScrollingDropdown'>
+              {/* <NavDropdown title='Location' id='navbarScrollingDropdown'>
                 <NavDropdown.Item href='#action3'>Netanya</NavDropdown.Item>
                 <NavDropdown.Item href='#action4'>Tel aviv</NavDropdown.Item>
 
                 <NavDropdown.Item href='#action5'>Hadera</NavDropdown.Item>
-              </NavDropdown>
+              </NavDropdown> */}
               {/* <Nav.Link href='#' disabled>
                 Link
               </Nav.Link> */}
             </Nav>
-            <Form className='d-flex col-xl-4'>
-              <FormControl
-                type='search'
-                placeholder='Search'
-                aria-label='Search'
-              />
-            </Form>
+
+            <SearchBar searchDivRef={searchDivRef} isOpen={isOpen} />
             <div className='d-flex justify-content-md-center'>
-              <Nav.Link className='' href='#action2'>
-                Saved
-              </Nav.Link>
               <Link to='/cart'>Cart</Link>
-              <Button variant='outline-success'>Log in</Button>
+
+              {<LoginModal handleClose={handleClose} />}
+              <Button onClick={handleShow} variant='outline-success'>
+                Log In
+              </Button>
             </div>
             {/* <FontAwesomeIcon icon='fa-solid fa-cart-shopping' /> */}
           </Navbar.Collapse>

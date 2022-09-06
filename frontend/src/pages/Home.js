@@ -8,10 +8,8 @@ import Footer from "../components/Footer";
 function Home() {
   return (
     <>
-      <Header />
       <Banner />
       <Grid />
-      <Footer />
     </>
   );
 }
