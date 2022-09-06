@@ -27,6 +27,19 @@ function Cart({ onAdd, onMinus }) {
 
   const totalPrice = subTotalPrice + shipping + subTotalPrice * taxInterest;
 
+  const onRemove = (id) => {
+    const exist = cart.find((item) => {
+      return item.product_id === id;
+    });
+
+    if (exist) {
+      let filterCart = cart.filter((item) => {
+        return item.product_id !== id;
+      });
+
+      setCart(filterCart);
+    }
+  };
   return (
     <>
       <div className='cart-product-wrapper'>
@@ -50,6 +63,9 @@ function Cart({ onAdd, onMinus }) {
                   <p>{item.quantity}</p>
                   <button onClick={() => onAdd(item)}>+</button>
                 </div>
+                <button onClick={() => onRemove(item.product_id)}>
+                  Remove
+                </button>
                 {/* <p className='cart-product--info'>{item.product_description}</p> */}
                 <div>
                   <p className='cart-product--price'>
