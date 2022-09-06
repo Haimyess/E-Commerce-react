@@ -23,6 +23,33 @@ import {
 function Header() {
   ////////////////////////MODAL
 
+  const [show, setShow] = useContext(LoginModalContext);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  ///////////////////// Closing div when click outside in searchbar
+  const searchDivRef = useRef();
+
+  const [isOpen, setIsOpen] = useState(true);
+
+  const handleDivBack = () => {
+    setIsOpen(true);
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside, true);
+    document.addEventListener("keydown", handleDivBack);
+    // document.addEventListener("click", handleDivBack, true);
+
+    document.addEventListener("change", handleClickOutside, true);
+  }, []);
+
+  const handleClickOutside = (e) => {
+    if (!searchDivRef.current.contains(e.target)) {
+      setIsOpen((val) => !val);
+    }
+  };
   return (
     <>
       <Navbar bg='light' expand='lg'>
