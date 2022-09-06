@@ -1,7 +1,10 @@
 /** @format */
 
-import React from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import { CartContext } from "../contexts/CartContext";
+import { useLocation } from "react-router";
+
 import {
   MDBCard,
   MDBCardBody,
@@ -17,7 +20,38 @@ import {
   MDBListGroupItem,
 } from "mdb-react-ui-kit";
 
+// Product
+// Qty product
+// Shipping cost
+// total
+
 export default function Checkout() {
+  const [cart, setCart] = useContext(CartContext);
+
+  const data = useLocation();
+
+  console.log(data);
+
+  const shipping = 20;
+  // const [details, setDetails] = useState({
+  //   firstName: "",
+  // lastName: '',
+  // });
+  // Personal details
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [address, setAddress] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+
+  // Card details
+  const [cardNumber, setCardNumber] = useState("");
+  const [nameOnCard, setNameOnCard] = useState("");
+  const [cardExpiration, setCardExpiration] = useState("");
+  const [cardSecret, setCardSecret] = useState("");
+
+  const [disable, setDisable] = useState(true);
+
   return (
     <div>
       <header>
@@ -43,6 +77,7 @@ export default function Checkout() {
                         id='form1'
                         type='text'
                         required
+                        onChange={(e) => setFirstName(e.target.value)}
                       />
                     </MDBCol>
 
@@ -52,6 +87,7 @@ export default function Checkout() {
                         id='form2'
                         type='text'
                         required
+                        onChange={(e) => setLastName(e.target.value)}
                       />
                     </MDBCol>
                   </MDBRow>
@@ -62,6 +98,7 @@ export default function Checkout() {
                     id='form3'
                     type='text'
                     required
+                    onChange={(e) => setAddress(e.target.value)}
                   />
                   <MDBInput
                     wrapperClass='mb-4'
@@ -69,6 +106,7 @@ export default function Checkout() {
                     id='form4'
                     type='email'
                     required
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                   <MDBInput
                     wrapperClass='mb-4'
@@ -76,6 +114,7 @@ export default function Checkout() {
                     id='form5'
                     type='number'
                     required
+                    onChange={(e) => setPhone(e.target.value)}
                   />
 
                   <hr className='my-4' />
@@ -124,6 +163,8 @@ export default function Checkout() {
                         type='text'
                         wrapperClass='mb-4'
                         required
+                        // onChange={(e) => handleInputs(e.target.value)}
+                        onChange={(e) => setNameOnCard(e.target.value)}
                       />
                     </MDBCol>
                     <MDBCol>
@@ -133,6 +174,8 @@ export default function Checkout() {
                         type='text'
                         wrapperClass='mb-4'
                         required
+                        // onChange={(e) => handleInputs(e.target.value)}
+                        onChange={(e) => setCardNumber(e.target.value)}
                       />
                     </MDBCol>
                   </MDBRow>
@@ -145,6 +188,7 @@ export default function Checkout() {
                         type='text'
                         wrapperClass='mb-4'
                         required
+                        onChange={(e) => setCardExpiration(e.target.value)}
                       />
                     </MDBCol>
                     <MDBCol md='3'>
@@ -154,6 +198,7 @@ export default function Checkout() {
                         type='text'
                         wrapperClass='mb-4'
                         required
+                        onChange={(e) => setCardSecret(e.target.value)}
                       />
                     </MDBCol>
                   </MDBRow>
@@ -180,7 +225,7 @@ export default function Checkout() {
                   </MDBListGroupItem>
                   <MDBListGroupItem className='d-flex justify-content-between align-items-center border-0 px-0 pb-0'>
                     Shipping
-                    <span>Gratis</span>
+                    <span>${shipping}</span>
                   </MDBListGroupItem>
                   <hr className='my-2'></hr>
                   <MDBListGroupItem className='d-flex justify-content-between align-items-center border-0 px-0 pb-0'>
@@ -196,8 +241,24 @@ export default function Checkout() {
                   </MDBListGroupItem>
                 </MDBListGroup>
               </MDBCardBody>
-              {/* <MDBBtn form="checkout-form">Place order</MDBBtn> */}
-              <button form='checkout-form'>Place Order</button>
+
+              <button
+                form='checkout-form'
+                // When all of the inputs are not empty, we change the setDisable to false.
+                disabled={
+                  firstName &&
+                  lastName &&
+                  address &&
+                  email &&
+                  phone &&
+                  nameOnCard &&
+                  cardExpiration &&
+                  cardSecret
+                    ? !disable
+                    : disable
+                }>
+                Place Order
+              </button>
             </MDBCard>
           </MDBCol>
         </MDBRow>

@@ -97,7 +97,13 @@ function Cart({ onAdd, onMinus }) {
             <br />
 
             <button>
-              <Link to='/checkout'>Checkout</Link>
+              <Link
+                to={{
+                  pathname: "/checkout",
+                  state: {},
+                }}>
+                Checkout
+              </Link>
             </button>
           </div>
         </aside>

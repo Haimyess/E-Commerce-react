@@ -43,7 +43,7 @@ function App() {
       );
     } else {
       setCart([...cart, { ...product, quantity: 1 }]);
-      console.log(cart);
+      // console.log(cart);
     }
   }
 
