@@ -5,6 +5,7 @@ import React, { useState, useEffect, useRef, useContext } from "react";
 import LoginModal from "../components/LogInModal";
 
 import { LoginModalContext } from "../contexts/LoginModalContext";
+import { CartContext } from "../contexts/CartContext";
 
 import SearchBar from "./SearchBar";
 import "../components/Header.css";
@@ -24,6 +25,7 @@ function Header() {
   ////////////////////////MODAL
 
   const [show, setShow] = useContext(LoginModalContext);
+  const { cart, setCart } = useContext(CartContext);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -47,9 +49,11 @@ function Header() {
 
   const handleClickOutside = (e) => {
     if (!searchDivRef.current.contains(e.target)) {
+      // console.log(e.target);
       setIsOpen((val) => !val);
     }
   };
+
   return (
     <>
       <Navbar bg='light' expand='lg'>
@@ -68,7 +72,7 @@ function Header() {
               className='my-2 my-lg-0'
               style={{ maxHeight: "100px" }}
               navbarScroll>
-              <Link to='/catalogue'> Cataloge</Link>
+              <Link to='/catalogue'> Catalogue</Link>
 
               {/* <NavDropdown title='Location' id='navbarScrollingDropdown'>
                 <NavDropdown.Item href='#action3'>Netanya</NavDropdown.Item>
@@ -83,7 +87,9 @@ function Header() {
 
             <SearchBar searchDivRef={searchDivRef} isOpen={isOpen} />
             <div className='d-flex justify-content-md-center'>
-              <Link to='/cart'>Cart</Link>
+              <Link className='cart' to='/cart'>
+                Cart <span className='cart-badge'>({cart.length})</span>
+              </Link>
 
               {<LoginModal handleClose={handleClose} />}
               <Button onClick={handleShow} variant='outline-success'>

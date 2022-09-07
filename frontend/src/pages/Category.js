@@ -1,7 +1,9 @@
 /** @format */
 
-import { useState, useEffect, createContext } from "react";
+import { useState, useEffect, createContext, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
+
+import { CartContext } from "../contexts/CartContext";
 
 import React from "react";
 import App from "../App";
@@ -10,10 +12,13 @@ import App from "../App";
 import "./styles/Category.css";
 
 import Filter from "../components/Filter";
+import Cart from "./Cart";
 
 export const CatgContext = createContext();
 
 export const Category = ({ onAdd }) => {
+  const { cart, setCart } = useContext(CartContext);
+  console.log("category", cart);
   /////////////////////////////////////////////////
   const [catgProducts, setCatgProducts] = useState([]);
 
@@ -26,6 +31,17 @@ export const Category = ({ onAdd }) => {
   const [searchArray, setSearchArray] = useState([]);
 
   const params = useParams();
+
+  useEffect(() => {
+    localStorage.setItem("product", JSON.stringify(cart));
+  }, [cart]);
+
+  // useEffect(() => {
+  //   const products = JSON.parse(localStorage.getItem("product"));
+  //   if (products) {
+  //     setCart(products);
+  //   }
+  // }, []);
 
   const getProducts = async () => {
     try {

@@ -2,20 +2,26 @@
 
 import React, { useEffect, useState, useContext } from "react";
 
+import { CartContext } from "../contexts/CartContext";
+
 import "./styles/Category.css";
 
 import { useParams } from "react-router-dom";
 
 // import BtnAddToCart from "../components/BtnAddToCart";
 
-// import { CartContext } from "../contexts/CartContext";
 // import BtnAddToCart from "../components/BtnAddToCart";
 
 function Product({ onAdd }) {
   const [product, setProduct] = useState([]);
-  // const [cart, setCart] = useContext(CartContext);
+
+  const { cart, setCart } = useContext(CartContext);
 
   const params = useParams();
+
+  useEffect(() => {
+    localStorage.setItem("product", JSON.stringify(cart));
+  }, [cart]);
 
   // const AddToCart = (singleProduct) => {
   //   // const exist = cart.find((item) => item.product_id === product.product_id);

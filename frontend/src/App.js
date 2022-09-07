@@ -28,7 +28,7 @@ import Checkout from "./pages/Checkout";
 import "./App.css";
 
 function App() {
-  const [cart, setCart] = useContext(CartContext);
+  const { cart, setCart } = useContext(CartContext);
 
   function handleAdd(product) {
     const exist = cart.find((item) => item.product_id === product.product_id);

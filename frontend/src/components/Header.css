@@ -4,3 +4,12 @@
   text-decoration: none;
   color: black;
 }
+
+.cart {
+  text-decoration: none;
+}
+
+.cart-badge {
+  color: brown;
+  font-size: 1.5rem;
+}

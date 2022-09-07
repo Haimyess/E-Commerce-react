@@ -12,20 +12,35 @@ import "./categories.css";
 import { CartContext } from "../contexts/CartContext";
 
 function Cart({ onAdd, onMinus }) {
-  const [cart, setCart] = useContext(CartContext);
+  const {
+    cart,
+    setCart,
+    shipping,
+    taxInterest,
+    subTotalPrice,
+    taxes,
+    totalPrice,
+  } = useContext(CartContext);
 
-  const shipping = 20;
+  useEffect(() => {
+    const products = JSON.parse(localStorage.getItem("product"));
+    if (products) {
+      setCart(products);
+    }
+  }, []);
 
-  const taxInterest = 0.17;
+  // const shipping = 20;
 
-  const subTotalPrice = cart.reduce(
-    (a, c) => a + c.product_price * c.quantity,
-    0
-  );
+  // const taxInterest = 0.17;
 
-  const taxes = taxInterest * subTotalPrice;
+  // const subTotalPrice = cart.reduce(
+  //   (a, c) => a + c.product_price * c.quantity,
+  //   0
+  // );
 
-  const totalPrice = subTotalPrice + shipping + subTotalPrice * taxInterest;
+  // const taxes = taxInterest * subTotalPrice;
+
+  // const totalPrice = subTotalPrice + shipping + subTotalPrice * taxInterest;
 
   const onRemove = (id) => {
     const exist = cart.find((item) => {

@@ -1,9 +1,11 @@
 /** @format */
 
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { CartContext } from "../contexts/CartContext";
 import { useLocation } from "react-router";
+
+import "../pages/styles/checkout.css";
 
 import {
   MDBCard,
@@ -26,13 +28,30 @@ import {
 // total
 
 export default function Checkout() {
-  const [cart, setCart] = useContext(CartContext);
+  const {
+    cart,
+    setCart,
+    shipping,
+    taxInterest,
+    subTotalPrice,
+    taxes,
+    totalPrice,
+  } = useContext(CartContext);
+
+  useEffect(() => {
+    const products = JSON.parse(localStorage.getItem("product"));
+    if (products) {
+      setCart(products);
+    }
+  }, []);
+
+  console.log(cart);
 
   const data = useLocation();
 
   console.log(data);
 
-  const shipping = 20;
+  // const shipping = 20;
   // const [details, setDetails] = useState({
   //   firstName: "",
   // lastName: '',
@@ -211,6 +230,10 @@ export default function Checkout() {
             </form>
           </MDBCol>
 
+          {/* -------------------------------------- */}
+          {/* ---------------Summary---------------- */}
+          {/* -------------------------------------- */}
+
           <MDBCol md='4' className='mb-4'>
             <MDBCard className='mb-4'>
               <MDBCardHeader className='py-3'>
@@ -219,9 +242,21 @@ export default function Checkout() {
 
               <MDBCardBody>
                 <MDBListGroup flush>
+                  {cart.map((product) => {
+                    return (
+                      <div
+                        className='checkout-products'
+                        key={product.product_id}>
+                        <p>{product.product_name}</p>
+                        <p>Qty {product.quantity} </p>
+                        <p>$ {product.product_price}</p>
+                        {/* <p>{product.product_name}</p> */}
+                      </div>
+                    );
+                  })}
                   <MDBListGroupItem className='d-flex justify-content-between align-items-center border-0 px-0 pb-0'>
-                    Products
-                    <span>$53.98</span>
+                    Subtotal
+                    <span>${subTotalPrice}</span>
                   </MDBListGroupItem>
                   <MDBListGroupItem className='d-flex justify-content-between align-items-center border-0 px-0 pb-0'>
                     Shipping
@@ -236,7 +271,7 @@ export default function Checkout() {
                       </strong>
                     </div>
                     <span>
-                      <strong>$53.98</strong>
+                      <strong>${totalPrice}</strong>
                     </span>
                   </MDBListGroupItem>
                 </MDBListGroup>
@@ -252,6 +287,7 @@ export default function Checkout() {
                   email &&
                   phone &&
                   nameOnCard &&
+                  cardNumber &&
                   cardExpiration &&
                   cardSecret
                     ? !disable
