@@ -16,9 +16,11 @@ import Cart from "./Cart";
 
 export const CatgContext = createContext();
 
-export const Category = ({ onAdd }) => {
+export const Category = ({ onAdd, qty }) => {
+  const { quantity, setQuantity } = qty;
+  console.log(quantity);
   const { cart, setCart } = useContext(CartContext);
-  console.log("category", cart);
+  // console.log("category", cart);
   /////////////////////////////////////////////////
   const [catgProducts, setCatgProducts] = useState([]);
 
@@ -33,8 +35,20 @@ export const Category = ({ onAdd }) => {
   const params = useParams();
 
   useEffect(() => {
-    localStorage.setItem("product", JSON.stringify(cart));
+    window.localStorage.setItem("product", JSON.stringify(cart));
   }, [cart]);
+
+  useEffect(() => {
+    // setQuantity();
+    window.localStorage.setItem("qty", JSON.stringify(quantity));
+  }, [quantity]);
+
+  // useEffect(() => {
+  //   const qty = JSON.parse(window.localStorage.getItem("qty"));
+  //   if (qty) {
+  //     setQuantity(qty);
+  //   }
+  // }, []);
 
   // useEffect(() => {
   //   const products = JSON.parse(localStorage.getItem("product"));

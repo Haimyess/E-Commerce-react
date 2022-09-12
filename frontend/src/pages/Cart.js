@@ -11,7 +11,8 @@ import "./categories.css";
 
 import { CartContext } from "../contexts/CartContext";
 
-function Cart({ onAdd, onMinus }) {
+function Cart({ onAdd, onMinus, qty }) {
+  const { quantity, setQuantity } = qty;
   const {
     cart,
     setCart,
@@ -22,12 +23,26 @@ function Cart({ onAdd, onMinus }) {
     totalPrice,
   } = useContext(CartContext);
 
-  useEffect(() => {
-    const products = JSON.parse(localStorage.getItem("product"));
-    if (products) {
-      setCart(products);
-    }
-  }, []);
+  // useEffect(() => {
+  //   window.localStorage.setItem("product", JSON.stringify(cart));
+  // }, [cart]);
+
+  // useEffect(() => {
+  //   window.localStorage.setItem("qty", JSON.stringify(quantity));
+  // }, [quantity]);
+
+  // useEffect(() => {
+  //   const products = JSON.parse(window.localStorage.getItem("product"));
+  //   if (products) {
+  //     setCart(products);
+  //   }
+  // }, []);
+  // useEffect(() => {
+  //   const qty = JSON.parse(window.localStorage.getItem("qty"));
+  //   if (qty) {
+  //     setQuantity(qty);
+  //   }
+  // }, []);
 
   // const shipping = 20;
 

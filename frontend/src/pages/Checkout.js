@@ -5,6 +5,9 @@ import { Link } from "react-router-dom";
 import { CartContext } from "../contexts/CartContext";
 import { useLocation } from "react-router";
 
+import { useForm, Controller } from "react-hook-form";
+// import { validFirstName, validEmail } from "../Regex";
+
 import "../pages/styles/checkout.css";
 
 import {
@@ -38,18 +41,18 @@ export default function Checkout() {
     totalPrice,
   } = useContext(CartContext);
 
-  useEffect(() => {
-    const products = JSON.parse(localStorage.getItem("product"));
-    if (products) {
-      setCart(products);
-    }
-  }, []);
+  // useEffect(() => {
+  //   const products = JSON.parse(localStorage.getItem("product"));
+  //   if (products) {
+  //     setCart(products);
+  //   }
+  // }, []);
 
-  console.log(cart);
+  // console.log(cart);
 
-  const data = useLocation();
+  // const data = useLocation();
 
-  console.log(data);
+  // console.log(data);
 
   // const shipping = 20;
   // const [details, setDetails] = useState({
@@ -57,11 +60,22 @@ export default function Checkout() {
   // lastName: '',
   // });
   // Personal details
+  // console.log(firstName);
+
+  // name : show just letter and minimum char
+
   const [firstName, setFirstName] = useState("");
+  const [errFirstName, setErrFirstName] = useState("");
+
+  console.log(firstName);
+
   const [lastName, setLastName] = useState("");
   const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
+
+  // email : check format
   const [email, setEmail] = useState("");
+  const [errEmail, setErrEmail] = useState("");
 
   // Card details
   const [cardNumber, setCardNumber] = useState("");
@@ -70,6 +84,45 @@ export default function Checkout() {
   const [cardSecret, setCardSecret] = useState("");
 
   const [disable, setDisable] = useState(true);
+
+  const validateFields = (e) => {
+    setFirstName(e.target.value);
+    console.log(firstName.length);
+    console.log(typeof firstName);
+
+    // const [sum, setSum] = useState('')
+
+    // {sum && <p>Hello</p>}
+
+    if (firstName.length < 2) {
+      setErrFirstName("Min 3 characters");
+    } else if (!isNaN(firstName) || /[0-9]/.test(firstName)) {
+      setErrFirstName("Only letters allowed");
+    } else {
+      setErrFirstName("");
+    }
+  };
+
+  // Error
+
+  // const [nameValid, setNameValid] = useState(false);
+
+  // lastname : show just letters
+  // const [errLastName, setErrLastName] = useState("");
+  // address : required
+  // const [errAddress, setErrAddress] = useState("");
+  // phone : min and numbers
+  // const [errPhone, setErrPhone] = useState("");
+
+  // cardnumber
+
+  // const [errCardNumber, setErrCardNumber] = useState("");
+  // namoncard
+  // const [errNameOnCard, setErrNameOnCard] = useState("");
+  // expiration
+  // const [errCardExpiration, setErrCardExpiration] = useState("");
+  // secret
+  // const [errCardSecret, setErrCardSecret] = useState("");
 
   return (
     <div>
@@ -95,9 +148,16 @@ export default function Checkout() {
                         label='First name'
                         id='form1'
                         type='text'
-                        required
-                        onChange={(e) => setFirstName(e.target.value)}
+                        // required
+                        value={firstName}
+                        onChange={(e) => validateFields(e)}
+
+                        // onChange={(e) => {
+                        //   setFirstName(e.target.value); validateName()
+                        // }}
                       />
+                      {errFirstName}
+                      {/* {errFirstName && "Your first name is invalid"} */}
                     </MDBCol>
 
                     <MDBCol>
@@ -125,8 +185,11 @@ export default function Checkout() {
                     id='form4'
                     type='email'
                     required
-                    onChange={(e) => setEmail(e.target.value)}
+                    value={email}
+                    // onChange={(e) => validateFields(e)}
+                    // onChange={(e) => setEmail(e.target.value)}
                   />
+                  {errEmail && "Your email is invalid"}
                   <MDBInput
                     wrapperClass='mb-4'
                     label='Phone'
@@ -279,6 +342,7 @@ export default function Checkout() {
 
               <button
                 form='checkout-form'
+                // onClick={validateFields}
                 // When all of the inputs are not empty, we change the setDisable to false.
                 disabled={
                   firstName &&

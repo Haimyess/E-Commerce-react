@@ -21,7 +21,25 @@ import {
 } from "react-bootstrap/";
 // import Catalogue from "../pages/Catalogue";
 
-function Header() {
+function Header({ qty }) {
+  const { quantity, setQuantity } = qty;
+
+  console.log(quantity);
+
+  //
+
+  // useEffect(() => {
+  //   const products = JSON.parse(window.localStorage.getItem("product"));
+  //   if (products) {
+  //     setCart(products);
+  //   }
+  // }, []);
+  // useEffect(() => {
+  //   const qty = JSON.parse(window.localStorage.getItem("qty"));
+  //   if (qty) {
+  //     setQuantity(qty);
+  //   }
+  // }, []);
   ////////////////////////MODAL
 
   const [show, setShow] = useContext(LoginModalContext);
@@ -40,7 +58,7 @@ function Header() {
   };
 
   useEffect(() => {
-    document.addEventListener("click", handleClickOutside, true);
+    // document.addEventListener("click", handleClickOutside, true);
     document.addEventListener("keydown", handleDivBack);
     // document.addEventListener("click", handleDivBack, true);
 
@@ -52,6 +70,19 @@ function Header() {
       // console.log(e.target);
       setIsOpen((val) => !val);
     }
+  };
+
+  // console.log(cart);
+
+  const cartTotal = () => {
+    const quantities = cart.map((product) => {
+      return product.quantity;
+    });
+    // setQuantity(quantities);
+    const sum = quantities.reduce((prev, cur) => prev + cur, 0);
+    // console.log(sum);
+    // setQuantity(sum);
+    return sum;
   };
 
   return (
@@ -88,7 +119,7 @@ function Header() {
             <SearchBar searchDivRef={searchDivRef} isOpen={isOpen} />
             <div className='d-flex justify-content-md-center'>
               <Link className='cart' to='/cart'>
-                Cart <span className='cart-badge'>({cart.length})</span>
+                Cart <span className='cart-badge'>({cartTotal()})</span>
               </Link>
 
               {<LoginModal handleClose={handleClose} />}

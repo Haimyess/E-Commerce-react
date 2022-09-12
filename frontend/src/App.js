@@ -1,6 +1,6 @@
 /** @format */
 
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 
 import { CartContext } from "./contexts/CartContext";
@@ -29,6 +29,8 @@ import "./App.css";
 
 function App() {
   const { cart, setCart } = useContext(CartContext);
+
+  const [quantity, setQuantity] = useState(0);
 
   function handleAdd(product) {
     const exist = cart.find((item) => item.product_id === product.product_id);
@@ -65,22 +67,34 @@ function App() {
     <div className='App'>
       <LoginModalProvider>
         <Routes>
-          <Route path='/' element={<SharedLayout />}>
+          <Route
+            path='/'
+            element={<SharedLayout qty={{ quantity, setQuantity }} />}>
             <Route index element={<Home />} />
             <Route path='/search' element={<SearchPage />} />
 
             <Route
               path='/cart'
-              element={<Cart onAdd={handleAdd} onRemove={handleRemove} />}
+              element={
+                <Cart
+                  onAdd={handleAdd}
+                  onMinus={handleRemove}
+                  qty={{ quantity, setQuantity }}
+                />
+              }
             />
             <Route path='/catalogue' element={<Catalogue />} />
             <Route
               path='/:type'
-              element={<Category onAdd={handleAdd} onRemove={handleRemove} />}
+              element={
+                <Category onAdd={handleAdd} qty={{ quantity, setQuantity }} />
+              }
             />
             <Route
               path='/product/:id'
-              element={<Product onAdd={handleAdd} onRemove={handleRemove} />}
+              element={
+                <Product onAdd={handleAdd} qty={{ quantity, setQuantity }} />
+              }
             />
             <Route path='*' element={<NotFound />} />
           </Route>

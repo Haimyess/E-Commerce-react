@@ -12,16 +12,28 @@ import { useParams } from "react-router-dom";
 
 // import BtnAddToCart from "../components/BtnAddToCart";
 
-function Product({ onAdd }) {
+function Product({ onAdd, qty }) {
+  const { quantity, setQuantity } = qty;
   const [product, setProduct] = useState([]);
 
   const { cart, setCart } = useContext(CartContext);
 
   const params = useParams();
 
-  useEffect(() => {
-    localStorage.setItem("product", JSON.stringify(cart));
-  }, [cart]);
+  // useEffect(() => {
+  //   window.localStorage.setItem("product", JSON.stringify(cart));
+  // }, [cart]);
+
+  // useEffect(() => {
+  //   window.localStorage.setItem("qty", JSON.stringify(quantity));
+  // }, [quantity]);
+
+  // useEffect(() => {
+  //   const qty = JSON.parse(window.localStorage.getItem("qty"));
+  //   if (qty) {
+  //     setQuantity(qty);
+  //   }
+  // }, []);
 
   // const AddToCart = (singleProduct) => {
   //   // const exist = cart.find((item) => item.product_id === product.product_id);

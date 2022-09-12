@@ -5,10 +5,10 @@ import { Outlet } from "react-router-dom";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 
-function SharedLayout() {
+function SharedLayout({ qty }) {
   return (
     <>
-      <Header />
+      <Header qty={qty} />
       <Outlet />
       <Footer />
     </>
