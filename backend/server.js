@@ -4,6 +4,7 @@
 const express = require("express");
 
 const products_router = require("../backend/routes/products.js");
+const order_router = require("../backend/routes/Orders.js");
 
 // Creating the server
 const app = express();
@@ -22,6 +23,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use("/api/products", products_router);
+app.use("/api/order", order_router);
 
 // // Making a get request, part of the CRUD (Create, read, update and delete) to the home
 // app.get("/", (req, res) => {

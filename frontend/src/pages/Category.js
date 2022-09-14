@@ -18,7 +18,7 @@ export const CatgContext = createContext();
 
 export const Category = ({ onAdd, qty }) => {
   const { quantity, setQuantity } = qty;
-  console.log(quantity);
+  // console.log(quantity);
   const { cart, setCart } = useContext(CartContext);
   // console.log("category", cart);
   /////////////////////////////////////////////////
