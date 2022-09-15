@@ -23,6 +23,7 @@ import SearchPage from "./pages/SearchPage";
 import Signup from "../src/pages/Signup";
 import SharedLayout from "../src/Layout/SharedLayout";
 import Checkout from "./pages/Checkout";
+import ThanksPage from "./pages/ThanksPage";
 // import { categoriesArray } from "./categoriesArray";
 
 import "./App.css";
@@ -101,6 +102,7 @@ function App() {
 
           <Route path='/signup' element={<Signup />} />
           <Route path='/checkout' element={<Checkout />} />
+          <Route path='/thanks' element={<ThanksPage />} />
         </Routes>
       </LoginModalProvider>
     </div>

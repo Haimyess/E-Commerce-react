@@ -89,9 +89,11 @@ export default function Checkout() {
         </p>
       </header>
 
-      <section>
-        <main>
+      <section className='checkout-wrapper'>
+        <main className='form-wrapper'>
           <form
+            id='checkout-form'
+            className='form-container'
             onSubmit={handleSubmit((order) => {
               console.log(order);
 
@@ -111,148 +113,163 @@ export default function Checkout() {
                   console.log(err);
                 });
 
-              navigate("/greeting");
+              navigate("/thanks");
               // setShow(true); // show modal
             })}>
-            <input
-              type='text'
-              placeholder='First name'
-              {...register("firstname", {
-                required: "This is required",
-                pattern: {
-                  value: /^[A-Za-z]+$/i,
-                  message: "Only letters allowed",
-                },
-                minLength: {
-                  value: 2,
-                  message: "Min 2 characters",
-                },
-              })}
-            />
-            <p>{errors.firstName?.message}</p>
-            <input
-              type='text'
-              placeholder='Last name'
-              {...register("lastname", {
-                required: "This is required",
-                pattern: /^[A-Za-z]+$/i,
-                minLength: {
-                  value: 2,
-                  message: "Min 2 characters",
-                },
-              })}
-            />
-            <p>{errors.lastName?.message}</p>
-            <input
-              type='text'
-              placeholder='Address'
-              {...register("address", {
-                required: "This is required",
-              })}
-            />
-            <p>{errors.address?.message}</p>
-            <input
-              type='email'
-              placeholder='Email'
-              {...register("email", {
-                required: "This is required",
-                minLength: {
-                  value: 2,
-                  message: "Min 2 characters",
-                },
-              })}
-            />
-            <p>{errors.email?.message}</p>
-            <input
-              type='number'
-              placeholder='Phone'
-              {...register("phone", {
-                required: "This is required",
-                minLength: {
-                  value: 2,
-                  message: "Min 2 characters",
-                },
-              })}
-            />
-            <p>{errors.phone?.message}</p>
-            <label>Card number</label>
-            <input
-              type='text'
-              maxLength={16}
-              placeholder='1234 1234 1234 1234'
-              {...register("cardnumber", {
-                required: "This is required",
-                maxLength: {
-                  value: 16,
-                  message: "Max 16 characters",
-                },
-              })}
-            />
-            <p>{errors.cardNumber?.message}</p>
-            <input
-              type='number'
-              maxLength={2}
-              placeholder='MM'
-              {...register("expmonth", {
-                required: "This is required",
-                maxLength: {
-                  value: 2,
-                },
-              })}
-            />
-            <p>{errors.expMonth?.message}</p>
-            <input
-              type='number'
-              placeholder='YY'
-              {...register("expyear", {
-                required: "This is required",
-                max: {
-                  value: 2,
-                  message: "Max 2 numbers",
-                },
-              })}
-            />
-            <p>{errors.expYear?.message}</p>
-            <input
-              type='password'
-              placeholder='123'
-              {...register("cvv", {
-                required: "This is required",
-                maxLength: {
-                  value: 3,
-                },
-              })}
-            />
-            <p>{errors.cvv?.message}</p>
+            <h4 className='title'>Contact info</h4>
+            <div className='join-container'>
+              <div className='grow-container'>
+                <input
+                  type='text'
+                  placeholder='First name'
+                  {...register("firstname", {
+                    required: "This is required",
+                    pattern: {
+                      value: /^[A-Za-z]+$/i,
+                      message: "Only letters allowed",
+                    },
+                    minLength: {
+                      value: 2,
+                      message: "Min 2 characters",
+                    },
+                  })}
+                />
+                <p className='err-val-msg'>{errors.firstname?.message}</p>
+              </div>
 
-            <input
-              type='submit'
-              value='Place order'
-              disabled={
-                (firstname &&
-                  lastname &&
-                  address &&
-                  email &&
-                  phone &&
-                  cardnumber &&
-                  expmonth &&
-                  expyear &&
-                  cvv) === ""
-                  ? !disable
-                  : disable
-                // firstName === ""
-              }
-            />
+              <div className='grow-container'>
+                <input
+                  className='join-margin'
+                  type='text'
+                  placeholder='Last name'
+                  {...register("lastname", {
+                    required: "This is required",
+                    pattern: /^[A-Za-z]+$/i,
+                    minLength: {
+                      value: 2,
+                      message: "Min 2 characters",
+                    },
+                  })}
+                />
+                <p className='err-val-msg'> {errors.lastname?.message}</p>
+              </div>
+            </div>
+
+            <div className='grow-container margin-bot'>
+              <input
+                type='text'
+                placeholder='Address'
+                {...register("address", {
+                  required: "This is required",
+                })}
+              />
+              <p className='err-val-msg'> {errors.address?.message}</p>
+            </div>
+
+            <div className='join-container'>
+              <div className='grow-container'>
+                <input
+                  type='email'
+                  placeholder='Email'
+                  {...register("email", {
+                    required: "This is required",
+                    minLength: {
+                      value: 2,
+                      message: "Min 2 characters",
+                    },
+                  })}
+                />
+                <p className='err-val-msg'> {errors.email?.message}</p>
+              </div>
+              <div className='grow-container'>
+                <input
+                  className='join-margin'
+                  type='number'
+                  placeholder='Phone'
+                  {...register("phone", {
+                    required: " * This is required",
+                    minLength: {
+                      value: 2,
+                      message: " * Min 2 characters",
+                    },
+                  })}
+                />
+                <p className='err-val-msg'> {errors.phone?.message}</p>
+              </div>
+            </div>
+
+            <h5 className='title'>Payment</h5>
+            {/* <label>Card number</label> */}
+            <div className='payment-container'>
+              <div className='grow-container cardnumber-container'>
+                <input
+                  type='text'
+                  maxLength={16}
+                  placeholder='1234 1234 1234 1234'
+                  {...register("cardnumber", {
+                    required: "This is required",
+                    maxLength: {
+                      value: 16,
+                      message: "Max 16 characters",
+                    },
+                  })}
+                />
+                <p className='err-val-msg'> {errors.cardnumber?.message}</p>
+              </div>
+              <div className='card-container'>
+                <div className='grow-container'>
+                  <input
+                    type='number'
+                    maxLength={2}
+                    placeholder='MM'
+                    {...register("expmonth", {
+                      required: "This is required",
+                      maxLength: {
+                        value: 2,
+                      },
+                    })}
+                  />
+                  <p className='err-val-msg'>{errors.expmonth?.message}</p>
+                </div>
+                <div className='grow-container'>
+                  <input
+                    type='number'
+                    placeholder='YY'
+                    {...register("expyear", {
+                      required: " * This is required",
+                      max: {
+                        value: 2,
+                        message: "* Max 2 numbers",
+                      },
+                    })}
+                  />
+                  <p className='err-val-msg'> {errors.expyear?.message}</p>
+                </div>
+                <div className='grow-container'>
+                  <input
+                    type='password'
+                    placeholder='123'
+                    {...register("cvv", {
+                      required: " * This is required",
+                      maxLength: {
+                        value: 3,
+                      },
+                    })}
+                  />
+                  <p className='err-val-msg'>{errors.cvv?.message}</p>
+                </div>
+              </div>
+            </div>
           </form>
         </main>
 
         {/* ASIDE */}
-        <aside>
-          <div>
+        <aside className='summary-wrapper'>
+          <div className='summary-container'>
             {/* <MDBCol md='4' className='mb-4'>
             <MDBCard className='mb-4'> */}
             <MDBCardHeader className='py-3'>
-              <h5 className='mb-0'>Summary</h5>
+              <h5 className='title'>Summary</h5>
             </MDBCardHeader>
 
             <MDBCardBody>
@@ -289,6 +306,29 @@ export default function Checkout() {
                 </MDBListGroupItem>
               </MDBListGroup>
             </MDBCardBody>
+            <div className='checkout-btn-container'>
+              <input
+                // className={`${!disable ? "input-disabled" : "checkout-btn"}`}
+                className='checkout-btn'
+                type='submit'
+                form='checkout-form'
+                value='Place order'
+                disabled={
+                  (firstname &&
+                    lastname &&
+                    address &&
+                    email &&
+                    phone &&
+                    cardnumber &&
+                    expmonth &&
+                    expyear &&
+                    cvv) === ""
+                    ? !disable
+                    : disable
+                  // firstName === ""
+                }
+              />
+            </div>
           </div>
         </aside>
       </section>
